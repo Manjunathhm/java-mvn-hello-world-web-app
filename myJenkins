@@ -19,7 +19,9 @@ pipeline{
     stage(deployApp) {
       steps {
           sh 'cp /home/slave1/workspace/helloWorld/target/mvn-hello-world.war /opt/tomcat/webapps/'
-          sh 'cd /opt/tomcat/bin/'
+          dir("/opt/tomcat/bin/") {
+              sh 'pwd'
+          }
           sh './shutdown.sh'
           sh './startup.sh'
       }
