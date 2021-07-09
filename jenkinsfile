@@ -1,0 +1,36 @@
+pipeline {
+    agent  { label 'slave1'}
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage(copyProject) {
+            steps {
+                sh 'git clone https://github.com/Manjunathhm/java-mvn-hello-world-web-app.git'
+            }
+        }
+        stage(Clean) {
+            steps {
+                echo 'Clean Old build'
+                sh 'mvn clean'
+            }
+        }
+         stage(InstallProcess) {
+            steps {
+                echo 'Build teh war file'
+                sh 'mvn install'
+            }
+        }
+    }
+}
+        
+	stage(mvnprocess) {
+            steps { 
+                sh 'mvn install'
+            }
+        }
+    }
+}
