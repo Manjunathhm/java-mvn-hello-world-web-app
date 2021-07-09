@@ -12,7 +12,7 @@ pipeline{
           sh 'pwd'
           sh 'mvn install'
           sh 'pwd'
-          sh 'cd target/'
+          sh 'cd /home/slave1/workspace/helloWorld/target/'
           sh 'pwd'
       }
     }
