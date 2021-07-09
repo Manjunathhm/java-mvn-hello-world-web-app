@@ -22,8 +22,6 @@ pipeline{
           dir("/opt/tomcat/bin/") {
               sh 'pwd'
           }
-          sh './shutdown.sh'
-          sh './startup.sh'
       }
     }
   }
