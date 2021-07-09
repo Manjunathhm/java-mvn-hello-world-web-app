@@ -10,7 +10,6 @@ pipeline{
     stage(buildArtifact){
       steps {
           sh 'pwd'
-          sh 'cd /helloWorld/'
           sh 'mvn install'
           sh 'cd target'
           sh 'pwd'
