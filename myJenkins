@@ -1,0 +1,28 @@
+pipeline{
+  agent { label 'slave1' }
+  stages {
+    stage(cloneProject) {
+      steps {
+          sh 'pwd'
+          sh 'git clone https://github.com/Manjunathhm/java-mvn-hello-world-web-app.git'
+        }
+    }
+    stage(buildArtifact){
+      steps {
+          sh 'pwd'
+          sh 'cd /helloWorld/'
+          sh 'mvn install'
+          sh 'cd target'
+          sh 'pwd'
+      }
+    }
+    stage(deployApp) {
+      steps {
+          sh 'cp mvn-hello-world.war /opt/tomcat/webapps/
+          sh 'cd /opt/tomcat/bin/'
+          sh './shutdown.sh'
+          sh './startup.sh'
+      }
+    }
+  }
+}
