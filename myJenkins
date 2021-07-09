@@ -18,7 +18,7 @@ pipeline{
     }
     stage(deployApp) {
       steps {
-          sh 'cp mvn-hello-world.war /opt/tomcat/webapps/
+          sh 'cp mvn-hello-world.war /opt/tomcat/webapps/'
           sh 'cd /opt/tomcat/bin/'
           sh './shutdown.sh'
           sh './startup.sh'
