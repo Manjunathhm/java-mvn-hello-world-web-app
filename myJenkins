@@ -11,7 +11,8 @@ pipeline{
       steps {
           sh 'pwd'
           sh 'mvn install'
-          sh 'cd target'
+          sh 'pwd'
+          sh 'cd target/'
           sh 'pwd'
       }
     }
