@@ -12,16 +12,15 @@ pipeline {
         stage(BuildProcess) {
   		steps {
                 	sh 'cd /home/slave2/workspace/ProjectOne'
-                	sh 'sudo docker build -t mavenbuild /home/slave
-                  sh 'sudo docker build -t mavenbuild /home/slave2/workspace/ProjectOne'
-			            sh 'sudo docker tag mavenbuild:latest 423155163727.dkr.ecr.us-east-2.amazonaws.com/myrepository1:latest'
-                        sh 'sudo docker push 423155163727.dkr.ecr.us-east-2.amazonaws.com/myrepository1:latest'
+                  	sh 'sudo docker build -t mavenbuild /home/slave2/workspace/ProjectOne'
+			sh 'sudo docker tag mavenbuild:latest 155635587501.dkr.ecr.us-east-2.amazonaws.com/private_repo1:latest'
+                        sh 'sudo docker push 155635587501.dkr.ecr.us-east-2.amazonaws.com/private_repo1:latest'
             	}
 	}
          stage(DeployProcess) {
            steps {
                     sh 'cd /home/slave2/workspace/ProjectOne'
-                    sh 'sudo docker run -d -p 8083:8080 mavenbuild:latest'
+                    sh 'sudo docker run -d -p 8090:8080 mavenbuild:latest'
 		}
 	   }
 	}
