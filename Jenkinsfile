@@ -1,7 +1,7 @@
 pipeline {
     agent  { label 'slave2'}
     stages {
-        stage(cloneProject) {
+        stage(clone) {
             steps {
                 sh 'cd /home/slave2/'
                 sh 'git clone https://github.com/Manjunathhm/java-mvn-hello-world-web-app.git'
@@ -9,7 +9,7 @@ pipeline {
                 sh 'cd /home/slave2/workspace/ProjectOne'
             }
         }
-        stage(BuildProcess) {
+        stage(buildImage) {
   		steps {
                 	sh 'cd /home/slave2/workspace/ProjectOne'
                   	sh 'sudo docker build -t mavenbuild /home/slave2/workspace/ProjectOne'
@@ -17,7 +17,7 @@ pipeline {
                         sh 'sudo docker push 155635587501.dkr.ecr.us-east-2.amazonaws.com/private_repo1:latest'
             	}
 	}
-         stage(DeployProcess) {
+         stage(runApp) {
            steps {
                     sh 'cd /home/slave2/workspace/ProjectOne'
                     sh 'sudo docker run -d -p 8090:8080 mavenbuild:latest'
