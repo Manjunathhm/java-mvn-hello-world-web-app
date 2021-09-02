@@ -4,13 +4,17 @@ pipeline {
     stage('Checkout'){
       steps{
         sh 'pwd'
-        sh 'if [ -d "$java-mvn-hello-world-web-app' ]; then rm -rf /home/slave1/workspace/pipelineProject1/java-mvn-hello-world-web-app'
+        def exists = fileExists '/home/slave1/workspace/pipelineProject1/java-mvn-hello-world-web-app'
+        if (exists) {
+          sh 'echo folder exists!'
+          sh 'rm -rf /home/slave1/workspace/pipelineProject1/java-mvn-hello-world-web-app'
+        }
         sh 'git clone https://github.com/manjunathhm/java-mvn-hello-world-web-app.git'
-        sh 'cd java-mvn-hello-world-web-app'
-        sh 'pwd'
+        dir('/home/slave1/workspace/pipelineProject1/java-mvn-hello-world-web-app'){
+          sh 'pwd'
+          sh 'mvn clean install'
+        }
         sh 'cd /home/slave1/workspace/pipelineProject1/java-mvn-hello-world-web-app'
-        sh 'pwd'
-        sh 'mvn clean install'
         sh 'pwd'
         sh 'ls -l'
       }
